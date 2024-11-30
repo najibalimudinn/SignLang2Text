@@ -8,6 +8,7 @@ def extract_frames(video_path, output_directory, frame_rate=2): # Desired frame 
     cap = cv2.VideoCapture(video_path)
     
     frame_count = 0
+    i = 0
     
     # Get the video file's name without extension
     video_name = os.path.splitext(os.path.basename(video_path))[0]
@@ -26,7 +27,8 @@ def extract_frames(video_path, output_directory, frame_rate=2): # Desired frame 
         
         # Only extract frames at the desired frame rate
         if frame_count % int(cap.get(5) / frame_rate) == 0:
-            output_file = f"{output_directory}/frame_{frame_count}.jpg"
+            i += 1 
+            output_file = f"{output_directory}/{i}.jpg"
             cv2.imwrite(output_file, frame)
     
     cap.release()
